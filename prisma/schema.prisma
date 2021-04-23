@@ -1,0 +1,78 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Dev {
+  id       Int      @id @default(autoincrement())
+  created  DateTime @default(now())
+  username String   @unique
+  title    String
+  status   String
+
+  posts      Post[]
+  saved      SavedPost[]
+  comments   Comment[]
+  tagOnPosts TagOnPost[]
+}
+
+model Post {
+  id       Int      @id @default(autoincrement())
+  created  DateTime @default(now())
+  title    String
+  content  Json
+  likes    Int      @default(0)
+  loves    Int      @default(0)
+  dislikes Int      @default(0)
+
+  comments  Comment[]
+  savedPost SavedPost[]
+  tags      TagOnPost[]
+
+  devId Int
+  dev   Dev @relation(fields: [devId], references: [id])
+}
+
+model SavedPost {
+  created DateTime @default(now())
+
+  dev    Dev  @relation(fields: [devId], references: [id])
+  devId  Int
+  post   Post @relation(fields: [postId], references: [id])
+  postId Int
+  @@id([postId, devId])
+}
+
+model Comment {
+  id      Int      @id @default(autoincrement())
+  created DateTime @default(now())
+  content String
+
+  post   Post @relation(fields: [postId], references: [id])
+  postId Int
+  dev    Dev  @relation(fields: [devId], references: [id])
+  devId  Int
+}
+
+model Tag {
+  id   Int         @id @default(autoincrement())
+  name String
+  tags TagOnPost[]
+}
+
+model TagOnPost {
+  created   DateTime @default(now())
+  confirmed Boolean  @default(false)
+
+  dev    Dev  @relation(fields: [devId], references: [id])
+  devId  Int
+  tag    Tag  @relation(fields: [tagId], references: [id])
+  tagId  Int
+  post   Post @relation(fields: [postId], references: [id])
+  postId Int
+  @@id([postId, tagId, devId])
+}
