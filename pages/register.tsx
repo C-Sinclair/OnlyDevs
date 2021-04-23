@@ -1,4 +1,5 @@
 import { Form } from "@unform/web";
+import axios from "axios";
 import { useRouter } from "next/router";
 import { useRef } from "react";
 import { Input } from "../components";
@@ -23,12 +24,11 @@ export default function Register() {
       const res = await supabase.auth.signUp({ email, password });
       const { id } = res.user;
 
-      await fetch(`/dev`, {
-        method: "POST",
-        body: JSON.stringify({
+      await axios.post(`/api/dev`, {
+        body: {
           id,
           username,
-        }),
+        },
       });
 
       router.push(`/dev/${id}`);
