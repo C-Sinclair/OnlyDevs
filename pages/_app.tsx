@@ -4,10 +4,12 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import { Sidebar, Topbar, Content } from "../components";
 import { theme } from "../lib/theme";
+import { supabase } from "./_supabase";
 
 const queryClient = new QueryClient();
 
 function App({ Component, pageProps }) {
+  const isLoggedIn = !!supabase.auth.user()
   return (
     <>
       <Head>
@@ -25,7 +27,7 @@ function App({ Component, pageProps }) {
       <Providers>
         <GlobalStyles />
         <Topbar />
-        <Content showPost>
+        <Content showPost={isLoggedIn}>
           <Component {...pageProps} />
         </Content>
         <Sidebar />
