@@ -3,6 +3,8 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { MouseEvent } from "react";
 import { useQuery } from "react-query";
+import { Logo } from "../components";
+import { css, styled } from "../lib/styled";
 
 export default function Home() {
   const { posts } = useFeed();
@@ -15,8 +17,11 @@ export default function Home() {
   }
 
   return (
-    <main>
-      <h1>Welcome to OnlyDevs</h1>
+    <HomeRoot>
+      <header className='welcome'>
+        <h1>Welcome to </h1>
+        <Logo />
+      </header>
       <ul>
       {posts?.map(post => (
         <li key={`post-${post.id}`} onClick={navigateToPost(post.id)}>
@@ -27,13 +32,13 @@ export default function Home() {
         </li>
       ))}
       </ul>
-    </main>
+    </HomeRoot>
   );
 }
 
 function useFeed() {
   const res = useQuery("posts", async () => {
-    const { data } = await axios.get(`/api/posts`);
+    const { data } = await axios.get(`/api/post`);
     return data;
   });
   return {
@@ -41,3 +46,19 @@ function useFeed() {
     ...res,
   };
 }
+
+const HomeRoot = styled.main(({ theme }) => css`
+
+  header.welcome {
+    position: relative;
+
+    h1 {
+      margin-right: 100px;
+    }
+    [data-logo] {
+      --size: 50px;
+      position: absolute;
+      top: 10px;
+    }
+  }
+`)

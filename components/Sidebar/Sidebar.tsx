@@ -1,7 +1,15 @@
+import Link from "next/link";
 import { css, styled } from "../../lib/styled";
+import { Logo } from "../Logo/Logo";
 
 export function Sidebar({}) {
-  return <SidebarRoot></SidebarRoot>;
+  return (
+    <SidebarRoot>
+      <Link href='/'>
+        <Logo />
+      </Link>
+    </SidebarRoot>
+  )
 }
 
 type RootProps = {
