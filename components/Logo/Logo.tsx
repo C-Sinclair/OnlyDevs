@@ -1,15 +1,20 @@
+import { MouseEventHandler } from "react"
 import { css, styled } from "../../lib/styled"
 
-export function Logo({}) {
+type LogoProps = {
+  onClick?: MouseEventHandler
+}
+
+export function Logo({ onClick }: LogoProps) {
   return (
-    <LogoRoot data-logo>
+    <LogoRoot data-logo onClick={onClick}>
       <p>Only<span>Devs</span></p>
       <hr />
     </LogoRoot>
   )
 }
 
-const LogoRoot = styled.div(({ theme }) => css`
+const LogoRoot = styled.div(({ theme, onClick }) => css`
   --size: 20px;
 
   position: relative;
@@ -19,6 +24,8 @@ const LogoRoot = styled.div(({ theme }) => css`
   text-align: center;
   display: flex;
   justify-content: center;
+
+  cursor: ${!!onClick ? 'pointer' : 'default'};
 
   span {
     font-family: ${theme.fonts.hand};

@@ -37,15 +37,14 @@ export default function Home() {
 }
 
 function useFeed() {
-  return { posts: []}
-  // const res = useQuery("posts", async () => {
-  //   const { data } = await axios.get(`/api/post`);
-  //   return data;
-  // });
-  // return {
-  //   posts: res.data as Post[],
-  //   ...res,
-  // };
+  const res = useQuery("posts", async () => {
+    const { data } = await axios.get(`/api/post`);
+    return data;
+  });
+  return {
+    posts: res.data as Post[],
+    ...res,
+  };
 }
 
 const HomeRoot = styled.main(({ theme }) => css`

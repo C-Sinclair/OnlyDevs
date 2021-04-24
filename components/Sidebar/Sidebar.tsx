@@ -1,13 +1,14 @@
-import Link from "next/link";
+import { useRouter } from "next/router";
 import { css, styled } from "../../lib/styled";
 import { Logo } from "../Logo/Logo";
 
 export function Sidebar({}) {
+  const router = useRouter()
+
+  const navigateHome = () => router.push(`/`)
   return (
     <SidebarRoot>
-      <Link href='/'>
-        <Logo />
-      </Link>
+      <Logo onClick={navigateHome} />
     </SidebarRoot>
   )
 }
