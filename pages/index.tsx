@@ -1,10 +1,10 @@
-import { Post } from ".prisma/client";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { MouseEvent } from "react";
 import { useQuery } from "react-query";
 import { Logo } from "../components";
 import { css, styled } from "../lib/styled";
+import { PostResult } from "../types/server";
 
 export default function Home() {
   const { posts } = useFeed();
@@ -37,12 +37,12 @@ export default function Home() {
 }
 
 function useFeed() {
-  const res = useQuery("posts", async () => {
+  const res = useQuery<PostResult[]>("posts", async () => {
     const { data } = await axios.get(`/api/post`);
     return data;
   });
   return {
-    posts: res.data as Post[],
+    posts: res.data,
     ...res,
   };
 }

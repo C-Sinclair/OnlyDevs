@@ -26,7 +26,7 @@ async function get(req: NextApiRequest, res: NextApiResponse) {
     const devId = parseInt(req.query.saved as string);
     const result = await prisma.post.findMany({
       where: { savedPost: { every: { devId } } },
-      select: { savedPost: { include: { post: true } } },
+      select: { savedPost: { include: { post: { include: { dev: true }} } } },
     });
     const posts = result.flatMap((post) =>
       post.savedPost.map((saved) => saved.post)

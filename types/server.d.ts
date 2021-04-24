@@ -9,3 +9,5 @@ export type PostBody<T = DataType> = {
 export type PutBody<T = DataType> = Omit<T, "id" | "created">;
 
 export type DeleteBody = Record<"id" | "devId", number>;
+
+export type PostResult = Post & { dev: Dev }
