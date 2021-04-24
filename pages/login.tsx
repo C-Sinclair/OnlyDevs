@@ -2,8 +2,8 @@ import { Form } from "@unform/web";
 import { useRouter } from "next/router";
 import { useRef } from "react";
 import { Input } from "../components";
-import { supabase } from "./_supabase";
-import { LoginFields, validateLoginForm, ValidationError } from "./_validation";
+import { supabase } from "../lib/supabase";
+import { LoginFields, validateLoginForm, ValidationError } from "../lib/validation";
 
 export default function Login() {
   const router = useRouter();

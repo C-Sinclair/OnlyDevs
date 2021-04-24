@@ -3,12 +3,12 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useRef } from "react";
 import { Input } from "../components";
-import { supabase } from "./_supabase";
+import { supabase } from "../lib/supabase";
 import {
   RegisterFields,
   validateRegisterForm,
   ValidationError,
-} from "./_validation";
+} from "../lib/validation";
 
 export default function Register() {
   const router = useRouter();

@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import { Sidebar, Topbar, Content } from "../components";
 import { theme } from "../lib/theme";
-import { supabase } from "./_supabase";
+import { supabase } from "../lib/supabase";
 
 const queryClient = new QueryClient();
 
