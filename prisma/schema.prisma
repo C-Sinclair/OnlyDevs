@@ -9,9 +9,12 @@ generator client {
 
 model Dev {
   id       Int      @id @default(autoincrement())
+  // this relates to the auth.users table internal to supabase
+  // this form of relation is not supported by prisma, so manual sync of fields is necessary from now on
+  // user_id  String   @unique 
   created  DateTime @default(now())
-  username String?   @unique
-  email    String?   @unique
+  username String?  @unique
+  email    String?  @unique
   title    String?
   status   String?
 

@@ -46,6 +46,9 @@ export default function Login() {
         <Input name="email" type="email" />
         <label>And also your password (leave blank if you prefer a magic link!)</label>
         <Input name="password" type="password" />
+        <button type='submit'>
+          Login
+        </button>
       </Form>
       <hr />
       <h6>Or</h6>

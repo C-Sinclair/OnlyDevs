@@ -10,3 +10,4 @@
 - [ ] Image uploads
 - [ ] Dev profile images
 - [ ] Dev profile image github fallback
+- [ ] CLI command to post `'foo' | od commit`

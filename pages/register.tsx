@@ -46,8 +46,8 @@ export default function Register() {
     }
   }
 
-  async function registerWithGithub() {
-    supabase.auth.signUp({ provider: 'github' })
+  async function loginWithGithub() {
+    supabase.auth.signIn({ provider: 'github' })
   }
 
   return (
@@ -60,10 +60,13 @@ export default function Register() {
         <Input name="email" type="email" />
         <label>And finally a password</label>
         <Input name="password" type="password" />
+        <button type='submit'>
+          Register
+        </button>
       </Form>
 
-      <button onClick={registerWithGithub}>
-        Register with Github
+      <button onClick={loginWithGithub}>
+        Login with Github
       </button>
     </main>
   );
