@@ -54,12 +54,14 @@ const HomeRoot = styled.main(({ theme }) => css`
     position: relative;
 
     h1 {
-      margin-right: 100px;
+      margin-right: 140px;
+      font-size: 1.2em;
+      color: ${theme.colours.text[4]};
     }
     [data-logo] {
       --size: 50px;
       position: absolute;
-      top: 10px;
+      top: -10px;
     }
   }
 `)

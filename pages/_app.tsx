@@ -49,8 +49,8 @@ const GlobalStyles = createGlobalStyle(
   body {
     margin: 0;
     padding: 0;
-    color: #fff;
-
+    color: ${theme.colours.text[0]};
+    font-family: ${theme.fonts.main};
     background-color: ${theme.colours.background[0]};
   }
 `
