@@ -4,12 +4,12 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import { Sidebar, Topbar, Content } from "../components";
 import { theme } from "../lib/theme";
-import { supabase } from "../lib/supabase";
+import { AuthProvider, useAuth } from "../hooks/auth";
 
 const queryClient = new QueryClient();
 
 function App({ Component, pageProps }) {
-  const isLoggedIn = !!supabase.auth.user()
+  const { loggedIn } = useAuth()
   return (
     <>
       <Head>
@@ -27,7 +27,7 @@ function App({ Component, pageProps }) {
       <Providers>
         <GlobalStyles />
         <Topbar />
-        <Content showPost={isLoggedIn}>
+        <Content showPost={loggedIn}>
           <Component {...pageProps} />
         </Content>
         <Sidebar />
@@ -36,8 +36,12 @@ function App({ Component, pageProps }) {
   );
 }
 
+/**
+ * Oooft so clean! 
+ */
 function Providers({ children }) {
   return [
+    <AuthProvider />,
     <ThemeProvider theme={theme} />,
     <QueryClientProvider client={queryClient} />,
     children,

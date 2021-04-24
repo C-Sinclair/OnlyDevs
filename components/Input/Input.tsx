@@ -25,7 +25,7 @@ export function Input({ name, ...rest }: InputProps) {
 
   return (
     <InputRoot>
-      <input ref={ref} defaultValue={defaultValue} {...rest} />;
+      <input ref={ref} defaultValue={defaultValue} {...rest} />
       <span className={clsx(`error`, { visible: error })}>{error}</span>
     </InputRoot>
   );

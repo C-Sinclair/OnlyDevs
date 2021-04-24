@@ -1,13 +1,17 @@
 import { css, styled } from "../../lib/styled";
 import Link from "next/link";
+import { useAuth } from "../../hooks/auth";
 
 export function Topbar({}) {
+  const { loggedIn } = useAuth()
   return (
     <TopbarRoot>
-      <div className="buttons">
-        <Link href="/login">Login</Link>
-        <Link href="/register">Signup</Link>
-      </div>
+      {!loggedIn && (
+        <div className="buttons">
+          <Link href="/login">Login</Link>
+          <Link href="/register">Signup</Link>
+        </div>
+      )}
     </TopbarRoot>
   );
 }
