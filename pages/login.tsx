@@ -33,15 +33,25 @@ export default function Login() {
       }
     }
   }
+
+  async function loginWithGithub() {
+    supabase.auth.signIn({ provider: 'github' })
+  }
+
   return (
     <main>
       <h1>Login time</h1>
       <Form onSubmit={handleSubmit} ref={formRef}>
         <label>We'll need your email</label>
         <Input name="email" type="email" />
-        <label>And also your password</label>
+        <label>And also your password (leave blank if you prefer a magic link!)</label>
         <Input name="password" type="password" />
       </Form>
+      <hr />
+      <h6>Or</h6>
+      <button onClick={loginWithGithub}>
+        Login with Github
+      </button>
     </main>
   );
 }

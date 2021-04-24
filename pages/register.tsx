@@ -46,6 +46,10 @@ export default function Register() {
     }
   }
 
+  async function registerWithGithub() {
+    supabase.auth.signUp({ provider: 'github' })
+  }
+
   return (
     <main>
       <h1>Register time</h1>
@@ -57,6 +61,10 @@ export default function Register() {
         <label>And finally a password</label>
         <Input name="password" type="password" />
       </Form>
+
+      <button onClick={registerWithGithub}>
+        Register with Github
+      </button>
     </main>
   );
 }

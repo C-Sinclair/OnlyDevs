@@ -4,6 +4,7 @@ export { ValidationError } from "yup";
 
 const email = Yup.string().email().required();
 const password = Yup.string().min(6).required();
+const optionalPassword = Yup.string().min(6);
 const username = Yup.string().required();
 
 const registerSchema = Yup.object().shape({
@@ -22,7 +23,7 @@ export function validateRegisterForm(fields: RegisterFields) {
 
 const loginSchema = Yup.object().shape({
   email,
-  password,
+  password: optionalPassword,
 });
 
 export type LoginFields = Yup.TypeOf<typeof loginSchema>;
