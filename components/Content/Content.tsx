@@ -19,14 +19,14 @@ export function Content({ children, showPost }: ContentProps) {
 
 const ContentRoot = styled.div(
   ({ theme }) => css`
-    --margin-top: ${theme.sizes.topbar.height}px;
-    --margin-left: ${theme.sizes.sidebar.width}px;
-    --width: calc(100vw - ${2 * theme.sizes.sidebar.width}px);
-    --height: calc(100vh - ${theme.sizes.topbar.height}px);
+    --width: calc(100vw - 250px);
 
     width: var(--width);
-    height: var(--height);
-    margin-left: var(--margin-left);
-    margin-top: var(--margin-top);
+    height: 100vh;
+    margin: auto;
+
+    main {
+      padding: 0;
+    }
   `
 );

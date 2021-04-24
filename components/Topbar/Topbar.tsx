@@ -14,7 +14,7 @@ export function Topbar({}) {
 
 const TopbarRoot = styled.header(
   ({ theme }) => css`
-    --topbar-height: ${theme.sizes.topbar.height}px;
+    --topbar-height: 80px;
 
     width: 100vw;
     max-width: unset;

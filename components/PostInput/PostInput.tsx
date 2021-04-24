@@ -22,20 +22,26 @@ export function PostInput({}) {
 
 const PostInputRoot = styled.section(
   ({ theme }) => css`
-    --width: calc(100vw - ${2 * theme.sizes.sidebar.width + 40}px);
+    --width: calc(100vw - 500px);
 
     border-radius: 4px;
-    border: 2px solid ${theme.colours.pastel[5]};
-    position: fixed;
-    top: 0;
+    border: 2px solid ${theme.colours.tint[5]};
     width: var(--width);
-    margin: 40px;
+    margin-top: 40px;
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    position: relative;
+
+    .ProseMirror {
+      padding: 20px 40px;
+      width: calc(100% - 80px);
+    }
 
     .buttons {
       align-self: flex-end;
+      position: absolute;
+      bottom: -10px;
+      right: -10px;
 
       button {
         padding: 4px;

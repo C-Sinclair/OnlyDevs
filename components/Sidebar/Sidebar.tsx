@@ -4,15 +4,19 @@ export function Sidebar({}) {
   return <SidebarRoot></SidebarRoot>;
 }
 
-const SidebarRoot = styled.div(
-  ({ theme }) => css`
-    --sidebar-width: ${theme.sizes.sidebar.width}px;
+type RootProps = {
+  open?: boolean
+}
+
+const SidebarRoot = styled.div<RootProps>(
+  ({ theme, open }) => css`
+    --sidebar-width: ${open ? 250 : 60}px;
 
     width: var(--sidebar-width);
     height: 100vh;
     position: fixed;
     top: 0;
     left: 0;
-    background-color: ${theme.colours.pastel[0]};
+    background-color: ${theme.colours.tint[1]};
   `
 );
