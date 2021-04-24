@@ -10,9 +10,10 @@ generator client {
 model Dev {
   id       Int      @id @default(autoincrement())
   created  DateTime @default(now())
-  username String   @unique
-  title    String
-  status   String
+  username String?   @unique
+  email    String?   @unique
+  title    String?
+  status   String?
 
   posts      Post[]
   saved      SavedPost[]
