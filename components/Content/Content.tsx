@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { css, styled } from "../../lib/styled";
-import { PostInput } from "../PostInput/PostInput";
+import { PostInput } from "..";
 
 type ContentProps = {
   /** Should display post input */

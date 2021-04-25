@@ -6,6 +6,7 @@
 
 - [ ] Basic posts feed
 - [ ] All devs view
+- [ ] Toast messages
 - [ ] Implement Sentry for error tracking
 - [ ] Image uploads
 - [ ] Dev profile images

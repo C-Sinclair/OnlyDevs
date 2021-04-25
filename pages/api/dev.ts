@@ -23,9 +23,10 @@ async function get(req: NextApiRequest, res: NextApiResponse) {
 }
 
 async function post(req: NextApiRequest, res: NextApiResponse) {
-  const { id, ...data } = req.body as PostBody<Dev>;
+  const { user_id, ...data } = req.body as PostBody<Dev>;
+  // TODO check logged in user matches this user
   await prisma.dev.update({
-    where: { id },
+    where: { user_id },
     data,
   });
   return res.status(200);

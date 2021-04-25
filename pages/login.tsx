@@ -1,7 +1,8 @@
 import { Form } from "@unform/web";
 import { useRouter } from "next/router";
 import { useRef } from "react";
-import { Input } from "../components";
+import { GithubLoginButton, Input } from "../components";
+import { formSubmit } from "../lib/form";
 import { supabase } from "../lib/supabase";
 import { LoginFields, validateLoginForm, ValidationError } from "../lib/validation";
 
@@ -9,34 +10,11 @@ export default function Login() {
   const router = useRouter();
   const formRef = useRef(null);
 
-  async function handleSubmit(fields: LoginFields) {
-    try {
-      formRef.current.setErrors({});
-      await validateLoginForm(fields);
-
-      const { email, password } = fields;
-
-      const res = await supabase.auth.signIn({ email, password });
-      const { id } = res.user;
-
-      router.push(`/dev/${id}`);
-    } catch (e) {
-      console.error(e);
-
-      if (e instanceof ValidationError) {
-        formRef.current.setErrors(
-          e.inner.reduce(
-            (all, error) => ({ ...all, [error.path]: error.message }),
-            {}
-          )
-        );
-      }
-    }
-  }
-
-  async function loginWithGithub() {
-    supabase.auth.signIn({ provider: 'github' })
-  }
+  const handleSubmit = formSubmit(formRef, validateLoginForm, async (fields: LoginFields) => {
+    const { email, password } = fields;
+    await supabase.auth.signIn({ email, password });
+    router.push(`/`);
+  })
 
   return (
     <main>
@@ -52,9 +30,7 @@ export default function Login() {
       </Form>
       <hr />
       <h6>Or</h6>
-      <button onClick={loginWithGithub}>
-        Login with Github
-      </button>
+      <GithubLoginButton />
     </main>
   );
 }
