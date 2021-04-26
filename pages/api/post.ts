@@ -34,7 +34,7 @@ async function get(req: NextApiRequest, res: NextApiResponse) {
     return res.json(posts);
   }
   const posts = await prisma.post.findMany();
-  return res.json(posts);
+  return res.status(200).json(posts);
 }
 
 async function post(req: NextApiRequest, res: NextApiResponse) {
