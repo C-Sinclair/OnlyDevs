@@ -5,6 +5,7 @@ import { useQuery } from "react-query";
 import { Logo } from "../components";
 import { PostsApi } from "../lib/request";
 import { css, styled } from "../lib/styled";
+import { supabase } from "../lib/supabase";
 import { PostResult } from "../types/server";
 
 type HomeProps = {
@@ -51,8 +52,10 @@ function useFeed() {
   };
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const data = await PostsApi.get()
+export const getServerSideProps: GetServerSideProps = async (req) => {
+  const res = await supabase.auth.api.getUserByCookie(req)
+  console.log({ res })
+  const data = [] // await PostsApi.get() 
   return {
     props: {
       posts: data
@@ -64,6 +67,7 @@ const HomeRoot = styled.main(({ theme }) => css`
 
   header.welcome {
     position: relative;
+    max-width: 500px;   
 
     h1 {
       margin-right: 140px;

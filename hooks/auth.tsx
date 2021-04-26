@@ -14,6 +14,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   useEffect(() => {
     const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
+      console.log({ event, session })
       setUser(supabase.auth.user())
       axios(`/api/auth`, {
         method: 'POST',
